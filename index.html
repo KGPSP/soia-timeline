@@ -33,6 +33,8 @@
     .quarter-guide span { position:absolute; top:-22px; left:9px; color:var(--red); font-size:.68rem; font-weight:800; letter-spacing:.06em; white-space:nowrap; }
     .event { position:absolute; width:205px; }
     .event.final { width:180px; }
+    .event.compact { width:150px; transform:translateX(-50%); }
+    .event.portal { width:175px; transform:translateX(-50%); }
     .event:after { content:""; position:absolute; width:2px; background:var(--line); left:50%; z-index:0; }
     .event.top:after { height:88px; top:100%; }
     .event.bottom:after { height:88px; bottom:100%; }
@@ -88,11 +90,12 @@
       <div class="event bottom" style="left:12%;top:426px"><div class="card"><small>Od stycznia 2026</small><h2>Data center i infrastruktura PSP</h2><p>Akwizycja, konfiguracja i uruchomienie SD-WAN, serwerów oraz switchingu.</p></div></div>
       <div class="event top" style="left:27%;top:54px"><div class="card"><small>I–VI 2026</small><h2>Mobilne alarmowanie</h2><p>Konta deweloperskie typu government w Google i Apple, FCM i APNS; publikacja aplikacji w imieniu instytucji.</p></div></div>
       <div class="event bottom" style="left:42%;top:442px"><div class="card"><small>I kw. — VIII 2026</small><h2>HPC i modele językowe</h2><p>Postępowanie zakupowe i umowy do końca sierpnia.</p></div></div>
-      <div class="event top" style="left:57%;top:45px"><div class="card"><small>Do sierpnia 2026</small><h2>Syreny alarmowe</h2><p>Sterowniki, system zarządzania i odbiór rozwiązania.</p></div></div>
+      <div class="event top compact" style="left:57%;top:45px"><div class="card"><small>Do sierpnia 2026</small><h2>Syreny alarmowe</h2><p>Sterowniki, system zarządzania i odbiór rozwiązania.</p></div></div>
       <div class="event bottom critical" style="left:68%;top:425px"><div class="card"><small>VIII–IX 2026</small><h2>Uruchomienie SOIA</h2><p>ZKSWD.SOIA, Alarm SOIA i Syreny SOIA.</p></div></div>
-      <div class="event top" style="left:78%;top:49px"><div class="card"><small>III kw. 2026</small><h2>Portal komunikacyjny</h2><p>Współpraca administracji, użytkowników i około 700 operatorów.</p></div></div>
+      <div class="event top portal" style="left:75%;top:49px"><div class="card"><small>III kw. 2026</small><h2>Portal komunikacyjny</h2><p>Współpraca administracji, użytkowników i około 700 operatorów.</p></div></div>
+      <div class="event top compact critical" style="left:92%;top:18px"><div class="card"><small>IX–X 2026</small><h2>Komunikacja E2E</h2><p>Szyfrowane kanały dla zarządzania kryzysowego, serwisu i utrzymania PSP.</p></div></div>
       <div class="event bottom critical final" style="left:99%;top:429px;transform:translateX(-100%)"><div class="card"><small>XII 2026 — I 2027</small><h2>MVP i finał programu</h2><p>Wszystkie wersje MVP dostępne; zakończenie prac 1 stycznia 2027.</p></div></div>
-      <i class="milestone" style="left:1%"></i><i class="milestone" style="left:12%"></i><i class="milestone" style="left:27%"></i><i class="milestone" style="left:42%"></i><i class="milestone" style="left:57%"></i><i class="milestone" style="left:70%"></i><i class="milestone" style="left:78%"></i><i class="milestone" style="left:91%"></i>
+      <i class="milestone" style="left:1%"></i><i class="milestone" style="left:12%"></i><i class="milestone" style="left:27%"></i><i class="milestone" style="left:42%"></i><i class="milestone" style="left:57%"></i><i class="milestone" style="left:70%"></i><i class="milestone" style="left:75%"></i><i class="milestone" style="left:92%"></i>
       <span class="month" style="left:1%">Q4 ’25</span><span class="month" style="left:27%">Q1 ’26</span><span class="month" style="left:52%">Q2 ’26</span><span class="month" style="left:77%">Q3 ’26</span><span class="month" style="left:91%">Q4 ’26</span><span class="month" style="left:100%">Q1 ’27</span>
     </section>
     <section class="readiness"><strong>Pas gotowości do działania</strong><span>szkolenia i wsparcie</span><span>integracje end-to-end</span><span>cyberbezpieczeństwo i odporność</span><span>pilotaż regionalny</span><span>mierniki sukcesu</span></section>
