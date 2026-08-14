@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,500..700&display=swap" rel="stylesheet">
+  <title>Program SOIA — oś realizacji</title>
+  <style>
+    :root { --ink:oklch(19% .018 260); --muted:oklch(48% .018 260); --line:oklch(87% .012 25); --navy:oklch(25% .02 260); --teal:oklch(48% .18 24); --red:oklch(35% .14 20); --paper:oklch(97.5% .006 25); --rose:oklch(95% .018 20); }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.5 "Instrument Sans", ui-sans-serif, system-ui, sans-serif; font-kerning:normal; }
+    main { max-width:1440px; margin:auto; padding:0 clamp(20px,4vw,56px) 72px; }
+    .service-line { margin:0 calc(clamp(20px,4vw,56px) * -1) clamp(36px,5vw,60px); padding:12px clamp(20px,4vw,56px); color:oklch(99% .002 25); background:var(--red); font-size:.75rem; font-weight:700; letter-spacing:.045em; text-transform:uppercase; }
+    header { display:flex; justify-content:space-between; gap:32px; align-items:flex-start; border-bottom:1px solid var(--line); padding-bottom:32px; }
+    h1 { margin:0; font-family:"Newsreader", Georgia, serif; font-size:clamp(2.6rem, 5vw, 4.6rem); font-weight:600; letter-spacing:-.025em; line-height:1.02; }
+    header p { max-width:54ch; color:var(--muted); margin:16px 0 0; font-size:clamp(1rem,1.4vw,1.18rem); }
+    .date { color:var(--teal); font-weight:800; white-space:nowrap; padding-top:7px; }
+    .principle { margin:28px 0 30px; display:flex; gap:14px; align-items:center; color:var(--red); font-weight:700; }
+    .pulse { width:12px; height:12px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 7px #f7dde0; flex:none; }
+    .scope { display:flex; gap:0; margin-bottom:46px; }
+    .scope div { flex:1; padding:4px 22px 4px 0; border-right:0; }
+    .scope div:last-child { border-right:0; }
+    .scope strong { display:block; color:var(--red); font-size:clamp(1.35rem,2.2vw,1.85rem); line-height:1; font-variant-numeric:tabular-nums; }
+    .scope span { color:var(--muted); font-size:.78rem; }
+    .timeline { position:relative; min-height:660px; margin:0 18px; }
+    .spine { position:absolute; top:326px; left:0; width:100%; height:5px; background:var(--navy); border-radius:4px; }
+    .spine:after { content:""; position:absolute; right:-2px; top:-7px; border-left:16px solid var(--navy); border-top:10px solid transparent; border-bottom:10px solid transparent; }
+    .milestone { position:absolute; top:307px; width:18px; height:18px; margin-left:-9px; border:4px solid var(--paper); border-radius:50%; background:var(--red); box-shadow:0 0 0 2px var(--red); }
+    .month { display:none; }
+    .quarter-guide { position:absolute; top:248px; height:270px; border-left:1px dashed color-mix(in oklch, var(--red) 30%, var(--line)); z-index:0; }
+    .quarter-guide span { position:absolute; top:-22px; left:9px; color:var(--red); font-size:.68rem; font-weight:800; letter-spacing:.06em; white-space:nowrap; }
+    .event { position:absolute; width:205px; }
+    .event.final { width:180px; }
+    .event:after { content:""; position:absolute; width:2px; background:var(--line); left:50%; z-index:0; }
+    .event.top:after { height:88px; top:100%; }
+    .event.bottom:after { height:88px; bottom:100%; }
+    .event .card { position:relative; z-index:1; border-top:3px solid var(--teal); background:var(--paper); padding:12px 0 0; }
+    .event.critical .card { border-top-color:var(--red); }
+    .event small { display:block; color:var(--teal); font-weight:800; text-transform:uppercase; letter-spacing:.06em; font-size:.68rem; margin-bottom:5px; }
+    .event.critical small { color:var(--red); }
+    .event h2 { margin:0 0 5px; font-size:1rem; line-height:1.17; }
+    .event p { margin:0; color:var(--muted); font-size:.83rem; line-height:1.38; }
+    .readiness { margin:10px 0 0; padding:16px 0; border-top:2px solid var(--teal); border-bottom:1px solid var(--line); background:transparent; display:flex; flex-wrap:wrap; align-items:center; gap:10px 22px; }
+    .readiness strong { color:var(--red); }
+    .readiness span { color:#5a3a42; font-size:.9rem; }
+    .readiness span:before { content:"•"; color:var(--teal); margin-right:8px; }
+    .ranges { margin-top:32px; padding:0; background:transparent; border:0; }
+    .ranges h2 { margin:0 0 4px; color:var(--red); font-size:1.1rem; }
+    .ranges > p { margin:0 0 18px; color:var(--muted); font-size:.85rem; }
+    .range-row { display:grid; grid-template-columns:220px 1fr; align-items:center; gap:18px; margin:12px 0; }
+    .range-timeline { position:relative; }
+    .range-axis { position:relative; z-index:2; height:38px; margin-left:238px; border-bottom:2px solid var(--navy); }
+    .range-axis span { position:absolute; bottom:7px; color:var(--red); font-size:.66rem; font-weight:800; letter-spacing:.04em; white-space:nowrap; }
+    .range-guides { position:absolute; z-index:0; top:38px; right:0; bottom:0; left:238px; }
+    .range-guides i { position:absolute; top:0; bottom:0; border-left:1px dashed color-mix(in oklch, var(--red) 28%, var(--line)); }
+    .range-row { position:relative; z-index:1; }
+    .range-row strong { font-size:.88rem; }
+    .bracket { position:relative; height:27px; margin-top:20px; margin-left:var(--start); width:var(--span); border-bottom:3px solid var(--teal); }
+    .bracket:before, .bracket:after { content:""; position:absolute; bottom:-3px; height:15px; width:9px; border-color:var(--teal); }
+    .bracket:before { left:0; border-left:3px solid var(--teal); border-top:3px solid var(--teal); }
+    .bracket:after { right:0; border-right:3px solid var(--teal); border-top:3px solid var(--teal); }
+    .bracket em { position:absolute; top:-19px; color:var(--red); background:var(--paper); padding:0 3px; font-size:.72rem; font-style:normal; font-weight:800; white-space:nowrap; }
+    .bracket em:first-child { left:8px; }
+    .bracket em:last-child { right:8px; }
+    .foundations { margin-top:26px; border-top:1px solid var(--line); padding-top:22px; }
+    .foundations h2 { margin:0 0 14px; font-size:1.1rem; color:var(--red); }
+    .foundation-grid { display:grid; grid-template-columns:1.2fr 1fr 1.25fr; gap:16px; }
+    .foundation { padding:18px 16px 16px; background:color-mix(in oklch, var(--rose) 42%, transparent); border-top:4px solid var(--teal); }
+    .foundation small { display:block; color:var(--red); font-weight:800; text-transform:uppercase; letter-spacing:.06em; font-size:.68rem; margin-bottom:7px; }
+    .foundation h3 { margin:0 0 6px; font-size:1rem; }
+    .foundation p { margin:0; color:var(--muted); font-size:.86rem; }
+    .foot { display:flex; justify-content:space-between; gap:24px; margin-top:38px; border-top:1px solid var(--line); padding-top:20px; color:var(--muted); font-size:.85rem; }
+    @media (max-width:780px) { main { padding:0 20px 32px; } .service-line { margin:0 -20px 32px; padding:11px 20px; font-size:.7rem; } header { display:block; } .date { padding-top:18px; } .scope { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; } .scope div { padding:0; } .scope span { font-size:.72rem; } .timeline { min-height:auto; margin:0; padding-left:22px; } .spine { left:5px; top:0; width:5px; height:100%; } .spine:after, .milestone, .month, .quarter-guide { display:none; } .event { position:relative !important; top:auto !important; left:auto !important; width:auto; margin:0 0 22px 18px; transform:none !important; } .event:after { display:none; } .event .card { border-left:0; border-top-width:3px; padding:10px 0 0; } .range-axis, .range-guides { display:none; } .range-row { grid-template-columns:1fr; gap:4px; margin:17px 0; } .foundation-grid { grid-template-columns:1fr; } .foot { display:block; } .foot span { display:block; margin-bottom:8px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="service-line">Komenda Główna Państwowej Straży Pożarnej · Biuro Informatyki i Łączności</div>
+    <header><div><h1>Program SOIA<br>oś realizacji</h1><p>Jedna mapa działań: infrastruktura, alarmowanie, aplikacje i gotowość do wspólnego działania.</p></div><div class="date">XII 2025 — I 2027</div></header>
+    <div class="principle"><i class="pulse"></i> Rozwój iteracyjny: codzienny przyrost funkcji i regularne udostępnianie kolejnych wersji.</div>
+    <section class="scope" aria-label="Skala programu"><div><strong>3</strong><span>zintegrowane systemy SOIA</span></div><div><strong>~700</strong><span>osób w społeczności wdrożeniowej</span></div><div><strong>605</strong><span>punktów PSP przygotowywanych do bezpiecznej pracy</span></div></section>
+    <section class="timeline" aria-label="Oś czasu programu SOIA">
+      <div class="spine"></div>
+      <i class="quarter-guide" style="left:1%"><span>Q4 ’25</span></i><i class="quarter-guide" style="left:27%"><span>Q1 ’26</span></i><i class="quarter-guide" style="left:52%"><span>Q2 ’26</span></i><i class="quarter-guide" style="left:77%"><span>Q3 ’26</span></i><i class="quarter-guide" style="left:91%"><span>Q4 ’26</span></i><i class="quarter-guide" style="left:99%"><span>Q1 ’27</span></i>
+      <div class="event top" style="left:1%;top:32px"><div class="card"><small>Grudzień 2025</small><h2>„Gdzie się ukryć”</h2><p>Publikacja pierwszej aplikacji dla ludności.</p></div></div>
+      <div class="event bottom" style="left:12%;top:426px"><div class="card"><small>Od stycznia 2026</small><h2>Data center i infrastruktura PSP</h2><p>Akwizycja, konfiguracja i uruchomienie SD-WAN, serwerów oraz switchingu.</p></div></div>
+      <div class="event top" style="left:27%;top:54px"><div class="card"><small>I–VI 2026</small><h2>Mobilne alarmowanie</h2><p>Konta government Google i Apple, FCM i APNS; publikacja aplikacji w imieniu instytucji.</p></div></div>
+      <div class="event bottom" style="left:42%;top:442px"><div class="card"><small>I kw. — VIII 2026</small><h2>HPC i modele językowe</h2><p>Postępowanie zakupowe i umowy do końca sierpnia.</p></div></div>
+      <div class="event top" style="left:57%;top:45px"><div class="card"><small>Do VIII 2026</small><h2>Syreny alarmowe</h2><p>Sterowniki, system zarządzania i odbiór rozwiązania.</p></div></div>
+      <div class="event bottom critical" style="left:68%;top:425px"><div class="card"><small>VIII–IX 2026</small><h2>Uruchomienie SOIA</h2><p>ZKSWD.SOIA, Alarm SOIA i Syreny SOIA.</p></div></div>
+      <div class="event top" style="left:78%;top:49px"><div class="card"><small>III kw. 2026</small><h2>Portal komunikacyjny</h2><p>Współpraca administracji, użytkowników i około 700 operatorów.</p></div></div>
+      <div class="event bottom critical final" style="left:99%;top:429px;transform:translateX(-100%)"><div class="card"><small>XII 2026 — I 2027</small><h2>MVP i finał programu</h2><p>Wszystkie wersje MVP dostępne; zakończenie prac 1 stycznia 2027.</p></div></div>
+      <i class="milestone" style="left:1%"></i><i class="milestone" style="left:12%"></i><i class="milestone" style="left:27%"></i><i class="milestone" style="left:42%"></i><i class="milestone" style="left:57%"></i><i class="milestone" style="left:70%"></i><i class="milestone" style="left:78%"></i><i class="milestone" style="left:91%"></i>
+      <span class="month" style="left:1%">Q4 ’25</span><span class="month" style="left:27%">Q1 ’26</span><span class="month" style="left:52%">Q2 ’26</span><span class="month" style="left:77%">Q3 ’26</span><span class="month" style="left:91%">Q4 ’26</span><span class="month" style="left:100%">Q1 ’27</span>
+    </section>
+    <section class="readiness"><strong>Pas gotowości do działania</strong><span>szkolenia i wsparcie</span><span>integracje end-to-end</span><span>cyberbezpieczeństwo i odporność</span><span>pilotaż regionalny</span><span>mierniki sukcesu</span></section>
+    <section class="ranges" aria-label="Okresy realizacji">
+      <h2>Prace prowadzone w okresach wielomiesięcznych</h2>
+      <p>Położenie klamry pokazuje rzeczywisty początek i przewidywany koniec prac na wspólnej skali czasu.</p>
+      <div class="range-timeline">
+        <div class="range-axis"><span style="left:0">Q4 ’25</span><span style="left:19%">Q1 ’26</span><span style="left:38%">Q2 ’26</span><span style="left:56%">Q3 ’26</span><span style="left:75%">Q4 ’26</span><span style="left:94%">Q1 ’27</span></div>
+        <div class="range-guides"><i style="left:0"></i><i style="left:19%"></i><i style="left:38%"></i><i style="left:56%"></i><i style="left:75%"></i><i style="left:94%"></i></div>
+        <div class="range-row"><strong>Centralne ewidencje</strong><div class="bracket" style="--start:0%;--span:94%"><em>X 2025</em><em>XII 2026</em></div></div>
+        <div class="range-row"><strong>Cyberbezpieczeństwo i 605 punktów PSP</strong><div class="bracket" style="--start:31%;--span:63%"><em>III 2026</em><em>XII 2026</em></div></div>
+        <div class="range-row"><strong>Konta government Google i Apple</strong><div class="bracket" style="--start:19%;--span:31%"><em>I 2026</em><em>VI 2026</em></div></div>
+      </div>
+    </section>
+    <section class="foundations" aria-label="Fundamenty wdrożenia">
+      <h2>Fundamenty budowane równolegle przez Biuro Informatyki i Łączności</h2>
+      <div class="foundation-grid">
+        <article class="foundation"><small>X 2025 — XII 2026</small><h3>Centralne ewidencje</h3><p>Budowa i uruchomienie Centralnej Ewidencji Obiektów Zbiorowej Ochrony oraz Centralnej Ewidencji Zasobów Ochrony Ludności.</p></article>
+        <article class="foundation"><small>Równolegle do wdrożeń</small><h3>Chmura hybrydowa</h3><p>Uruchomienie środowisk chmurowych do hostowania aplikacji w modelu hybrydowym.</p></article>
+        <article class="foundation"><small>III — VIII 2026, kontynuacja do XII</small><h3>Bezpieczeństwo i uruchomienie</h3><p>Ogólnokrajowe przygotowanie cyberbezpieczeństwa, konfiguracja infrastruktury i uzbrojenie 605 punktów w jednostkach PSP.</p></article>
+      </div>
+    </section>
+    <footer class="foot"><span>Opracował: Biuro Informatyki i Łączności Komendy Głównej Państwowej Straży Pożarnej · 2026</span><span>SOIA · alarmowanie · odporność · współpraca</span></footer>
+  </main>
+</body>
+</html>
